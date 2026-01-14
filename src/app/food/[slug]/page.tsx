@@ -6,7 +6,9 @@ import Footer from '@/components/Footer';
 import FoodCard from '@/components/FoodCard';
 import WineCard from '@/components/WineCard';
 import { foodCategories, getFoodsByCategory, getCategoryBySlug, foods } from '@/data/foods';
-import { getWinesForFood } from '@/data/wines';
+import { getWinesForFood, getWineBySlug } from '@/data/wines';
+import { RecipeSchema } from '@/components/schema/RecipeSchema';
+import { BreadcrumbSchema } from '@/components/schema/BreadcrumbSchema';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -53,8 +55,27 @@ export default async function FoodCategoryPage({ params }: PageProps) {
     .filter((w, i, arr) => arr.findIndex((x) => x.slug === w.slug) === i)
     .slice(0, 4);
 
+  // Get wine names for schema
+  const wineNames = Array.from(allWineSlugs)
+    .slice(0, 3)
+    .map((wineSlug) => getWineBySlug(wineSlug)?.name)
+    .filter(Boolean) as string[];
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <RecipeSchema
+        foodName={category.name}
+        description={category.description}
+        wineRecommendations={wineNames}
+        category={category.name}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://wine-pairing-tool.vercel.app" },
+          { name: "Foods", url: "https://wine-pairing-tool.vercel.app/pair" },
+          { name: category.name, url: `https://wine-pairing-tool.vercel.app/food/${category.slug}` },
+        ]}
+      />
       <Header />
 
       <main>

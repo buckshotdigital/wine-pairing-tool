@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import FoodCard from '@/components/FoodCard';
 import { wines, getWineBySlug } from '@/data/wines';
 import { getFoodsForWine } from '@/data/foods';
+import { ProductSchema } from '@/components/schema/ProductSchema';
+import { BreadcrumbSchema } from '@/components/schema/BreadcrumbSchema';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -51,6 +53,14 @@ export default async function WinePage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ProductSchema wine={wine} />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://wine-pairing-tool.vercel.app" },
+          { name: "Wines", url: "https://wine-pairing-tool.vercel.app/pair" },
+          { name: wine.name, url: `https://wine-pairing-tool.vercel.app/wine/${wine.slug}` },
+        ]}
+      />
       <Header />
 
       <main>
