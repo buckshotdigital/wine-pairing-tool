@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://winepair.vercel.app/sitemap.xml', // Update when you deploy
+    sitemap: 'https://wine-pairing-tool.vercel.app/sitemap.xml',
   };
 }
