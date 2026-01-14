@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     description: 'Discover perfect wine pairings for any dish. Free sommelier-level recommendations.',
     type: 'website',
   },
+  verification: {
+    google: 'XUC0kAyql3EE_w-JCYc1p3kikwYcfPCasNlsmD8jH4w',
+  },
 };
 
 export default function RootLayout({
