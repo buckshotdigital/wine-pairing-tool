@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const playfair = Playfair_Display({
@@ -44,6 +45,20 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="XUC0kAyql3EE_w-JCYc1p3kikwYcfPCasNlsmD8jH4w" />
+        {/* Google Analytics */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-408721SC65"
+        />
+        <Script id="google-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-408721SC65');
+          `}
+        </Script>
       </head>
       <body className={`${playfair.variable} ${inter.variable} font-sans`}>{children}</body>
     </html>
